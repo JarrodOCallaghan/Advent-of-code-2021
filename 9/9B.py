@@ -1,6 +1,7 @@
 import dataset
 import datasetTest
 
+
 class Map:
     def __init__(self):
         a = dataset.main()
@@ -14,11 +15,10 @@ class Map:
             self.a.append(number)
         self.height = len(self.a)
         self.width = len(self.a[0])
-        print(f'{self.height}x{self.width}')
+        print(f"{self.height}x{self.width}")
         self.found_basin = []
 
-
-    def get_basins(self, current = None):
+    def get_basins(self, current=None):
         # Start at 0,0
         # Create a list which each item will be basin area
         # A basin is surrounded by 9's
@@ -32,19 +32,19 @@ class Map:
                     # Only if we haven't visited it
                     if self.found_basin != []:
                         self.found_basin = []
-                    self.traverse(i,j)
+                    self.traverse(i, j)
                     basins.append(self.found_basin)
-        basins.sort(key=len, reverse = True)
+        basins.sort(key=len, reverse=True)
         for basin in basins:
-            print(f'Basin size: {len(basin)}')
+            print(f"Basin size: {len(basin)}")
         # Because i'm lazy:
         answer = len(basins[0]) * len(basins[1]) * len(basins[2])
         print(answer)
 
-    def traverse(self, i,j):
+    def traverse(self, i, j):
         # Stealing I and J from the get_basins loop
         current = self.a[i][j]
-        #print(current)
+        # print(current)
         # We have now been here
         current[1] = True
         # Get its neighbour nodes
@@ -74,8 +74,10 @@ class Map:
         # So we are now getting the correct data. lets append temp:
         self.found_basin.append(current)
 
+
 def main():
     map = Map()
     map.get_basins()
+
 
 main()
